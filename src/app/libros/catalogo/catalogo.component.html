@@ -1,0 +1,102 @@
+<!-- <div class="text-center">
+    <ul *ngFor="let libro of libros">
+        <li class="contenedor">
+            <button class="btn btn-info" style="float: right; background-color:rgb(209, 64, 64);"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-info" style="float: right; background-color:rgb(64, 209, 64);"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-info" style="float: right; background-color:rgb(64, 64, 209);"><i class="fas fa-eye"></i></button>
+            <button class="btn btn-sm btn-danger" style="float: right;">
+                <span class="glyphincon glyphincon-trash" aria-hidden="true"></span> Borrar
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <button class="btn btn-sm btn-primary" style="float: right;">
+                <span class="glyphincon glyphincon-pencil" aria-hidden="true"></span> Editar
+                <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-success" style="float: right;">
+                <span class="glyphincon glyphincon-eye-open" aria-hidden="true"></span> Ver
+                <i class="fas fa-eye"></i>
+            </button>
+            <div class="contenedor_libro">
+                <div class="img_libro"></div>
+                <h4>{{libro.descripcion}}</h4>
+                <h5 class="fuente"> {{libro.autor}}</h5>
+                <h5 class="fuente" style="float: left;">Edicion: {{libro.edicion}}</h5>
+                <h5 class="fuente" style="float: right;">Existencia: {{libro.existencia}}</h5>
+            </div>
+        </li>
+        <hr>
+    </ul>
+</div> -->
+<div class="row">
+    <div class="col-lg-1">Buscar:</div>
+    <div class="col-lg-5">
+        <input type="text" class="form-control mr-sm-2" [(ngModel)]="busqueda">
+    </div>
+    <!-- <div class="col-lg-12" *ngIf="busqueda">
+        {{busqueda}}
+    </div> -->
+</div>
+<br>
+<div>
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Portada</th>
+                <th>Descripcion</th>
+                <th>Autor</th>
+                <th>Edicion</th>
+                <th>Existencia</th>
+                <th>Disponibles</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let libro of libros | catalogoSearch: busqueda">
+                <td>
+                    <div class="img_libro"> <img class="img_libro" src="{{url + 'getimagen/' + libro.imagen}}" alt=""> </div>
+                </td>
+                <td>{{libro.descripcion}}</td>
+                <td>{{libro.autor}}</td>
+                <td>{{libro.edicion}}</td>
+                <td>{{libro.existencia}}</td>
+                <td>{{libro.disponibles}}</td>
+                <td>
+                    <a [routerLink]="['/libro',libro._id]" class="btn btn-sm btn-success">
+                        <!-- <span class="glyphincon glyphincon-eye-open" aria-hidden="true"></span> Ver -->
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a [routerLink]="['/librosedit',libro._id]" class="btn btn-sm btn-primary">
+                        <!-- <span class="glyphincon glyphincon-pencil" aria-hidden="true"></span> Editar -->
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="#basicExampleModal-{{libro._id}}" role="button" data-toggle="modal" class="btn btn-sm btn-danger">
+                        <!-- <span class="glyphincon glyphincon-trash" aria-hidden="true"></span> Borrar -->
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="basicExampleModal-{{libro._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro que quieres eliminar?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    Se eliminará el libro: <strong>{{libro.descripcion}}</strong>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteLibro(libro._id);" data-dismiss="modal">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <app-root [titulo]="titulo_c"></app-root> -->
+<!-- <img class='img_libro' src="C:/wamp/www/WEB 1/imagenes/anna.jpg" alt=""> -->

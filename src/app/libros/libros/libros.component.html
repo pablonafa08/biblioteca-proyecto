@@ -1,0 +1,58 @@
+<h1>Registro de libros</h1>
+<div class="alert alert-success" *ngIf="status == 'success'">Registro exitoso</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">No se pudo registrar</div>
+<form #libroForm="ngForm" (ngSubmit)="onSubmit()" class="row">
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="">Descripcion</label>
+            <input type="text" class="form-control" placeholder="Descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="libro.descripcion">
+        </div>
+        <div class="form-group">
+            <label for="">Autor</label>
+            <input type="text" class="form-control" placeholder="Autor" name="autor" #autor="ngModel" [(ngModel)]="libro.autor">
+        </div>
+        <div class="form-group">
+            <label for="">Editorial</label>
+            <input type="text" class="form-control" placeholder="Editorial" name="editorial" #editorial="ngModel" [(ngModel)]="libro.editorial">
+        </div>
+        <div class="form-group">
+            <label for="">Edicion</label>
+            <input type="text" class="form-control" placeholder="Edicion" name="edicion" #edicion="ngModel" [(ngModel)]="libro.edicion">
+        </div>
+        <div class="form-group">
+            <label for="">Fecha de Publicacion</label>
+            <input type="text" class="form-control" placeholder="Fecha de Publicacion" name="fecha_pub" #fecha_pub="ngModel" [(ngModel)]="libro.fecha_pub">
+        </div>
+        <div class="form-group">
+            <label for="">Existencia</label>
+            <input type="number" class="form-control" placeholder="Existencia" name="existencia" #existencia="ngModel" [(ngModel)]="libro.existencia">
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="">Categoria</label>
+            <select class="form-control" name="categoria" id="categoria" #categoria="ngModel" [(ngModel)]="libro.categoria">
+                <option *ngFor="let categoria of categorias" value="{{categoria._id}}" >{{categoria.descripcion}}</option>
+            </select>
+            <!-- <input type="text" class="form-control" placeholder="Categoria"> -->
+        </div>
+        <div class="form-group">
+            <label for="">Imagen</label>
+            <input type="file" class="form-control" placeholder="Imagen" (change)="fileChangeEvent($event)">
+        </div>
+        <div class="form-group">
+            <label for="">Precio</label>
+            <input type="text" class="form-control" placeholder="Precio" name="precio" #precio="ngModel" [(ngModel)]="libro.precio">
+        </div>
+        <div class="form-group">
+            <label for="">Dias Maximos de Prestamo</label>
+            <input type="text" class="form-control" placeholder="Dias Maximos de Prestamos" name="dias_prestamos" #dias_prestamos="ngModel" [(ngModel)]="libro.dias_prestamos">
+        </div>
+        <button type="submit" class="btn btn-primary" *ngIf="libro.descripcion && libro.autor && libro.editorial && libro.edicion && libro.fecha_pub && libro.existencia && libro.categoria && libro.precio && libro.dias_prestamos;
+         else desactivado"><i class="fas fa-plus"></i> Agregar</button>
+        <ng-template #desactivado>
+            <button type="submit" class="btn btn-primary" disabled><i class="fas fa-plus"></i> Agregar</button>
+        </ng-template>
+    </div>
+
+</form>

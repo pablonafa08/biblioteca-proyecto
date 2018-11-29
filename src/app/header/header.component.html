@@ -1,0 +1,182 @@
+<section>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+
+            <div class="sidebar-header">
+                <h3>Biblioteca</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+
+                <li>
+                    <a routerLink="/" routerLinkActive="active"><i class="fas fa-home"></i> Inicio</a>
+
+                </li>
+                <li>
+                    <a href="#administracion" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user-tie"></i> Administración</a>
+                    <ul class="collapse list-unstyled" id="administracion">
+                        <li>
+                            <a routerLink="/bibliotecarios">Nuevo Bibliotecario</a>
+                        </li>
+                        <li>
+                            <a routerLink="/todosbibliotecarios">Todos los Bibliotecarios</a>
+                        </li>
+                        <li>
+                            <a routerLink="/puestos">Puestos de Bibliotecarios</a>
+                        </li>
+                        <li>
+                            <a routerLink="/cortecaja">Corte de Caja</a>
+                        </li>
+                        <li>
+                            <a routerLink="/preciocredencial">Precio de Credencial</a>
+                        </li>
+                        <li>
+                            <a routerLink="/porcentajes">Porcentajes de Multas</a>
+                        </li>
+                        <li>
+                            <a routerLink="/ingresos">Ingresos Mensuales</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#libros" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-book"></i> Libros</a>
+                    <ul class="collapse list-unstyled" id="libros">
+                        <li>
+                            <a routerLink="/catalogo">Catalogo</a>
+                        </li>
+                        <li>
+                            <a routerLink="/libros">Nuevo Libro</a>
+                        </li>
+                        <li>
+                            <a routerLink="/categorias">Categorias</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#usuarios" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> Usuarios</a>
+                    <ul class="collapse list-unstyled" id="usuarios">
+                        <li>
+                            <a routerLink="/usuarios">Nuevo Usuario</a>
+                        </li>
+                        <li>
+                            <a routerLink="/todosusuarios">Todos los Usuarios</a>
+                        </li>
+                        <li>
+                            <a routerLink="/renovarcredencial">Renovar Credencial</a>
+                        </li>
+                        <li>
+                            <a routerLink="/pubgeneral">Registrar Visitantes Generales</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#presydev" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-retweet"></i> Prestamos y Devoluciones</a>
+                    <!-- exchange-alt-->
+                    <ul class="collapse list-unstyled" id="presydev">
+                        <li>
+                            <a routerLink="/prestamos">Nuevo Prestamo</a>
+                        </li>
+                        <li>
+                            <a routerLink="/devoluciones">Registrar Devolucion</a>
+                        </li>
+                        <li>
+                            <a routerLink="/todosprestamos">Todos los prestamos</a>
+                        </li>
+                        <li>
+                            <a routerLink="/devolucionespend">Devoluciones Pendientes</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a routerLink="/repyest"><i class="fas fa-chart-bar"></i> Reportes y Estadisticas</a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info" style="background-color:rgb(209, 64, 64)">
+                                    <i class="fas fa-align-justify"></i> </button> -->
+            <!--float:right; margin-top: 20px; margin-right: 10px;background-color:black-->
+
+
+            <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fas fa-align-justify"></i>
+                                </button> -->
+            <!-- <div>
+                        <h4 id="nombre_titulo">
+                            {{titulo}}
+                        </h4>
+                    </div> -->
+            <!-- <div class="form-inline my-2 my-lg-0" id="navbarSupportedContent">
+
+                        
+                    </div> -->
+
+            <!-- <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    {{identify.nombres}} <span class="caret"></span>
+                            </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="pointer" (click)="logOut()"><i class="fas fa-sign-out-alt"></i>
+                                        Cerrar Sesion
+                                    </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Opcion 1</a>
+                                <a class="dropdown-item" href="#">Opcion 2</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Van a reprobar</a>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </nav> -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <!-- <button type="button" id="sidebarCollapse" class="btn btn-info" style="background-color:rgb(209, 64, 64)">
+                            <i class="fas fa-align-justify"></i> </button> -->
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                {{identify.nombres}} <i class="fas fa-caret-down"></i>
+                            </a> -->
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{identify.nombres}} <i class="fas fa-caret-down"></i></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" class="pointer" (click)="logOut()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    </form> -->
+                </div>
+            </nav>
+
+            <div class="container">
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
+    </div>
+</section>

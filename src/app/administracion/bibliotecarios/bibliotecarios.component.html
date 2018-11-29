@@ -1,0 +1,87 @@
+<h1>Registro de Bibliotecarios</h1>
+<div *ngIf="isEdit">
+    <div class="alert alert-success" *ngIf="status == 'success'">Cambio exitoso</div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">No se pudo Realizar el cambio</div>
+</div>
+<div *ngIf="isEdit == false">
+    <div class="alert alert-success" *ngIf="status == 'success'">Registro exitoso</div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">No se pudo registrar</div>
+</div>
+<form #bibliotecarioForm="ngForm" (ngSubmit)="onSubmit()" class="row">
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="">Nombre(s)</label>
+            <input type="text" class="form-control" placeholder="Nombre(s)" name="nombres" #nombres="ngModel" [(ngModel)]="bibliotecario.nombres">
+        </div>
+        <div class="form-group">
+            <label for="">Apellido Paterno</label>
+            <input type="text" class="form-control" placeholder="Apellido Paterno" name="app" #app="ngModel" [(ngModel)]="bibliotecario.app">
+        </div>
+        <div class="form-group">
+            <label for="">Apellido Materno</label>
+            <input type="text" class="form-control" placeholder="Apellido Materno" name="apm" #apm="ngModel" [(ngModel)]="bibliotecario.apm">
+        </div>
+        <div class="form-group">
+            <label for="">Calle</label>
+            <input type="text" class="form-control" placeholder="Calle" name="calle" #calle="ngModel" [(ngModel)]="bibliotecario.calle">
+        </div>
+        <div class="form-group">
+            <label for="">Numero</label>
+            <input type="text" class="form-control" placeholder="Numero" name="numero" #numero="ngModel" [(ngModel)]="bibliotecario.numero">
+        </div>
+        <div class="form-group">
+            <label for="">Colonia</label>
+            <input type="text" class="form-control" placeholder="Colonia" name="colonia" #colonia="ngModel" [(ngModel)]="bibliotecario.colonia">
+        </div>
+        <div class="form-group">
+            <label for="">Código Postal</label>
+            <input type="text" class="form-control" placeholder="Código Postal" name="cp" #cp="ngModel" [(ngModel)]="bibliotecario.cp">
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="">Telefono</label>
+            <input type="text" class="form-control" placeholder="Telefono" name="telefono" #telefono="ngModel" [(ngModel)]="bibliotecario.telefono">
+        </div>
+        <div class="form-group">
+            <label for="">Puesto</label>
+            <select *ngIf="isEdit" class="form-control" name="puesto" id="puesto" #puesto="ngModel" [(ngModel)]="bibliotecario.puesto.descripcion">
+                <option *ngFor="let puesto of puestos" value="{{puesto._id}}">{{puesto.descripcion}}</option>
+            </select>
+            <select *ngIf="isEdit == false" class="form-control" name="puesto" id="puesto" #puesto="ngModel" [(ngModel)]="bibliotecario.puesto">
+                <option *ngFor="let puesto of puestos" value="{{puesto._id}}">{{puesto.descripcion}}</option>
+            </select>
+            <!-- <input type="text" class="form-control" placeholder="Puesto"> -->
+        </div>
+        <div class="form-group">
+            <label for="">Horario</label>
+            <input type="text" class="form-control" placeholder="Horario" name="horario" #horario="ngModel" [(ngModel)]="bibliotecario.horario">
+        </div>
+        <div *ngIf="isEdit == false" class="form-group">
+            <label for="">Correo</label>
+            <input type="text" class="form-control" placeholder="Correo" name="correo" #correo="ngModel" [(ngModel)]="bibliotecario.correo">
+        </div>
+        <div *ngIf="isEdit == false" class="form-group">
+            <label for="">Contraseña</label>
+            <input type="text" class="form-control" placeholder="Contraseña" name="contra" #contra="ngModel" [(ngModel)]="bibliotecario.contra">
+        </div>
+        <div *ngIf="isEdit">
+            <button type="submit" class="btn btn-primary" *ngIf="bibliotecario.nombres && bibliotecario.app && bibliotecario.apm && bibliotecario.calle && bibliotecario.numero && 
+         bibliotecario.colonia && bibliotecario.cp && bibliotecario.telefono && bibliotecario.puesto && bibliotecario.horario;
+         else desactivado"><i class="fas fa-pencil-alt"></i> Editar</button>
+            <ng-template #desactivado>
+                <button type="submit" class="btn btn-primary" disabled><i class="fas fa-pencil-alt"></i> Editar</button>
+            </ng-template>
+        </div>
+        <div *ngIf="isEdit == false">
+            <button type="submit" class="btn btn-primary" *ngIf="bibliotecario.nombres && bibliotecario.app && bibliotecario.apm && bibliotecario.calle && bibliotecario.numero && 
+         bibliotecario.colonia && bibliotecario.cp && bibliotecario.telefono && bibliotecario.puesto && bibliotecario.horario && bibliotecario.correo && bibliotecario.contra;
+         else desactivado"><i class="fas fa-plus"></i> Agregar</button>
+            <ng-template #desactivado>
+                <button type="submit" class="btn btn-primary" disabled><i class="fas fa-plus"></i> Agregar</button>
+            </ng-template>
+        </div>
+    </div>
+
+
+</form>

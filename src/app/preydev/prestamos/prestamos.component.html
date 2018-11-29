@@ -1,0 +1,114 @@
+<div class="alert alert-success" *ngIf="status == 'success'">Registro exitoso</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">No se pudo registrar</div>
+<div class="row">
+    <div class="col-lg-2" *ngIf="leido == false">Buscar Usuario:</div>
+    <div class="col-lg-3" *ngIf="leido == false">
+        <input type="text" class="form-control" [(ngModel)]="busquedau">
+    </div>
+    <div class="col-lg-2" *ngIf="librosel == false">Buscar Libro:</div>
+    <div class="col-lg-3" *ngIf="librosel == false">
+        <input type="text" class="form-control" [(ngModel)]="busqueda">
+    </div>
+
+</div>
+<br>
+<div style="overflow:auto;
+height:400px;" *ngIf="leido == false">
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Nombre</th>
+                <th>CURP</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios | usuarioSearch: busquedau">
+                <td>{{usuario.nombres}} {{usuario.app}} {{usuario.apm}}</td>
+                <td>{{usuario.curp}}</td>
+                <td>{{usuario.telefono}}</td>
+                <td>{{usuario.correo}}</td>
+                <td>
+                    <button class="btn btn-sm btn-success" (click)="marcar(usuario._id);"><i class="fas fa-check"></i> Seleccionar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="leido == true">
+    <button class="btn  btn-danger" (click)="desmarcar()">Cambiar Usuario</button>
+    <br><br>
+    <div class="form-group" class="col-lg-5">
+        <label for="">Nombre</label>
+        <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="nombres" disabled>
+    </div>
+</div>
+<br>
+<div style="overflow:auto;
+height:400px;" *ngIf="librosel == false">
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Portada</th>
+                <th>Descripcion</th>
+                <th>Autor</th>
+                <th>Edicion</th>
+                <th>Disponibles</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let libro of libros | catalogoSearch: busqueda">
+                <td>
+                    <div class="img_libro"> <img class="img_libro" src="{{url + 'getimagen/' + libro.imagen}}" alt=""> </div>
+                </td>
+                <td>{{libro.descripcion}}</td>
+                <td>{{libro.autor}}</td>
+                <td>{{libro.edicion}}</td>
+                <td>{{libro.disponibles}}</td>
+                <td>
+                    <button *ngIf="libro.disponibles == 0" class="btn btn-sm btn-success" id="{{libro._id}}" (click)="marcarLibro(libro._id);" disabled><i class="fas fa-check"></i> Seleccionar</button>
+                    <button *ngIf="libro.disponibles != 0" class="btn btn-sm btn-success" id="{{libro._id}}" (click)="marcarLibro(libro._id);"><i class="fas fa-check"></i> Seleccionar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="librosel == true">
+    <button class="btn  btn-danger" (click)="desmarcarLibro()">Cambiar Libro</button>
+    <!-- <div> <img class="img_libro2" src="{{url + 'getimagen/' + imagenb}}" alt=""> </div> -->
+    <br><br>
+    <!-- <div class="row"> -->
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="">Descripcion</label>
+            <input type="text" class="form-control" name="descripcions" #descripcions="ngModel" [(ngModel)]="descripcionsb" disabled>
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+<!-- <br> -->
+<div class="col-lg-5" *ngIf="leido == true && librosel == true">
+    <div class="form-group">
+        <label for="">Comentarios sobre prestamo</label>
+        <textarea type="text" class="form-control" name="comentarios" #comentarios="ngModel" [(ngModel)]="comentarioss"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Fecha</label>
+        <input type="date" class="form-control" name="fechas" #fechas="ngModel" [(ngModel)]="fecha">
+    </div>
+</div>
+<br>
+<div *ngIf="leido == true && librosel == true && status != 'success'">
+    <button class="btn btn-primary" (click)="onSubmit()"><i class="fas fa-plus"></i> Agregar</button>
+</div>
+<div class="row">
+    <div *ngIf="status == 'success'" class="col-lg-5">
+        <button class="btn btn-primary" (click)="onSubmit()" disabled><i class="fas fa-plus"></i> Agregar</button>
+    </div>
+    <div *ngIf="status == 'success'" class="col-lg-5">
+        <a routerLink="/prestamos" class="btn btn-success" (click)="location.reload();"><i class="fas fa-plus"></i> Agregar otro Prestamo</a>
+    </div>
+</div>

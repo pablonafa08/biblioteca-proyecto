@@ -1,0 +1,42 @@
+<h1>Registro de Publico en General</h1>
+<div class="alert alert-success" *ngIf="status == 'success'">Registro exitoso</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">No se pudo registrar</div>
+<form #publicoForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-5">
+    <div class="form-group">
+        <label for="">Nombre</label>
+        <input type="text" class="form-control" placeholder="Nombre" name="nombre" #nombre="ngModel" [(ngModel)]="publico.nombre">
+    </div>
+    <div class="form-group">
+        <label for="">Edad</label>
+        <input type="text" class="form-control" placeholder="Edad" name="edad" #edad="ngModel" [(ngModel)]="publico.edad">
+    </div>
+    <div class="form-group">
+        <label for="">Sexo</label>
+        <input type="text" class="form-control" placeholder="Sexo" name="sexo" #sexo="ngModel" [(ngModel)]="publico.sexo">
+    </div>
+    <div class="form-group">
+        <label for="">Estudiante</label>
+        <select class="form-control" name="estudiante" id="estudiante" #estudiante="ngModel" [(ngModel)]="publico.estudiante">
+            <option >Si</option>
+            <option >No</option>
+        </select>
+        <!-- <input type="text" class="form-control" placeholder="Estudiante" name="estudiante" #estudiante="ngModel" [(ngModel)]="publico.estudiante"> -->
+    </div>
+    <div class="form-group">
+        <label for="">Hora de Entrada</label>
+        <input type="text" class="form-control" placeholder="Hora de Entrada" name="entrada" #entrada="ngModel" [(ngModel)]="publico.entrada">
+    </div>
+    <div class="form-group">
+        <label for="">Hora de Salida</label>
+        <input type="text" class="form-control" placeholder="Hora de Salida" name="salida" #salida="ngModel" [(ngModel)]="publico.salida">
+    </div>
+    <div class="form-group">
+        <label for="">Fecha</label>
+        <input type="text" class="form-control" placeholder="Fecha" name="fecha" #fecha="ngModel" [(ngModel)]="publico.fecha">
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="publico.nombre && publico.edad && publico.sexo && publico.entrada && publico.salida && publico.fecha;
+    else desactivado"><i class="fas fa-plus"></i> Agregar</button>
+    <ng-template #desactivado>
+        <button type="submit" class="btn btn-primary" disabled><i class="fas fa-plus"></i> Agregar</button>
+    </ng-template>
+</form>

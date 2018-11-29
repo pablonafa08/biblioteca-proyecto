@@ -1,0 +1,14 @@
+<div class="row" *ngIf="libro">
+    <div id="libro-head-card" class="col-lg-4 pull-left">
+        <img src="{{url + 'getimagen/' + libro.imagen}}" style="width:300px">
+    </div>
+    <div class="libro-data col-lg-17 pull-left">
+        <h1>{{libro.descripcion}}</h1>
+        <h3>Autor: {{libro.autor}}</h3>
+        <h3>Edicion: {{libro.edicion}}</h3>
+        <h3>Categoria: {{libro.categoria.descripcion}}</h3>
+        <h3>Precio: ${{libro.precio}}</h3>
+        <h3>Dias maximos: {{libro.dias_prestamos}}</h3>
+        <h3>Status: {{libro.estatus}}</h3>
+    </div>
+</div>

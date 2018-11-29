@@ -1,0 +1,60 @@
+<h1>Categorias de libros</h1>
+<div class="alert alert-success" *ngIf="status == 'success'">Cambio exitoso</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">No se pudo hacer el cambio</div>
+<form #categoriaForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-5">
+    <div class="form-group">
+        <label for="">Descripcion</label>
+        <input type="text" class="form-control" placeholder="Descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="categoria.descripcion">
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="categoria.descripcion; else desactivado"><i class="fas fa-pencil-alt"></i> Editar</button>
+    <ng-template #desactivado>
+        <button type="submit" class="btn btn-primary" disabled><i class="fas fa-pencil-alt"></i> Editar</button>
+    </ng-template>
+</form>
+<br><br>
+<div>
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let categoria of categorias">
+                <td>{{categoria.descripcion}}</td>
+                <td>
+                    <a [routerLink]="['/categoriasedit',categoria._id]" class="btn btn-sm btn-primary">
+                        <!-- <span class="glyphincon glyphincon-pencil" aria-hidden="true"></span> Editar -->
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="#basicExampleModal-{{categoria._id}}" role="button" data-toggle="modal" class="btn btn-sm btn-danger">
+                        <!-- <span class="glyphincon glyphincon-trash" aria-hidden="true"></span> Borrar -->
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="basicExampleModal-{{categoria._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro que quieres eliminar?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    Se eliminará la categoria: <strong>{{categoria.descripcion}}</strong>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteCategoria(categoria._id);" data-dismiss="modal">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

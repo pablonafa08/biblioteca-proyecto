@@ -1,0 +1,27 @@
+<h1>Ingresos</h1>
+<br>
+<div style="overflow:auto;
+        height:400px;">
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Mes</th>
+                <th>Total</th>
+                <th>Credenciales</th>
+                <th>Libros Dañados</th>
+                <th>Devoluciones con Retraso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- | usuarioSearch: busquedau -->
+            <tr *ngFor="let ingreso of ingresos ">
+                <th>{{ingreso.mes}}</th>
+                <td>${{ingreso.total}}</td>
+                <th>${{ingreso.credenciales}}</th>
+                <td>${{ingreso.danios}}</td>
+                <th>${{ingreso.retrasos}}</th>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

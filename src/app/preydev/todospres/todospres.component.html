@@ -1,0 +1,33 @@
+<h1>Prestamos que ya fueron devueltos</h1>
+<div style="overflow:auto;
+height:400px;" *ngIf="leido == false">
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Libro</th>
+                <th>Usuario</th>
+                <th>Bibliotecario</th>
+                <th>Fecha de prestamo</th>
+                <th>Fecha de entrega</th>
+                <th>Entrega con Daño</th>
+                <th>Entrega a Tiempo</th>
+                <!-- <th>Acciones</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- | usuarioSearch: busquedau -->
+            <tr *ngFor="let prestamo of prestamos ">
+                <td>{{prestamo.libro.descripcion}}</td>
+                <td>{{prestamo.usuario.nombres}} {{prestamo.usuario.app}} {{prestamo.usuario.apm}}</td>
+                <td>{{prestamo.bibliotecario.nombres}} {{prestamo.bibliotecario.app}} {{prestamo.bibliotecario.apm}}</td>
+                <td>{{prestamo.fecha | convertir}}</td>
+                <td>{{prestamo.fecha_entrega_R | convertir}}</td>
+                <td>{{prestamo.entrega_danio}}</td>
+                <td>{{prestamo.entrega_tiempo}}</td>
+                <!-- <td>
+                    <button class="btn btn-sm btn-success" (click)="marcar(prestamo._id, prestamo.libro.precio);"><i class="fas fa-check"></i> Seleccionar</button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>

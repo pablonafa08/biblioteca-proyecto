@@ -1,0 +1,106 @@
+<div class="tab">
+    <button id="prestamos" class="tablink" (click)="cambiar('prestamos');">Libros Prestados y Devueltos</button>
+    <button id="categorias" class="tablink" (click)="cambiar('categorias');">Libros Prestados por Categoria</button>
+    <button id="publico" class="tablink" (click)="cambiar('publico');">Publico en General</button>
+    <!-- <button class="btn" onclick="openCity(event, 'Paris')">Paris</button> -->
+</div>
+<div *ngIf="campoSeleccionado == 'prestamos'">
+    <h1>Libros Prestados y Devueltos</h1>
+    <div style="overflow:auto;
+height:400px;">
+        <table class="table table-hover">
+            <thead class="thead-default">
+                <tr>
+                    <th>Mes</th>
+                    <th>Total</th>
+                    <th>Sin daño</th>
+                    <th>Con daño</th>
+                    <th>A tiempo</th>
+                    <th>Con retardo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- | usuarioSearch: busquedau -->
+                <tr *ngFor="let mes of meses ">
+                    <th>{{mes.mes}}</th>
+                    <td>{{mes.total}}</td>
+                    <th>{{mes.danio}}</th>
+                    <td>{{mes.total - mes.danio}}</td>
+                    <th>{{mes.retraso}}</th>
+                    <td>{{mes.total - mes.retraso}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div *ngIf="campoSeleccionado == 'categorias'">
+    <h1>Libros Prestados por Categoria</h1>
+    <div style="overflow:auto;
+    height:400px;">
+        <table class="table table-hover">
+            <thead class="thead-default">
+                <tr>
+                    <th>Mes</th>
+                    <th *ngFor="let categoria of categorias ">{{categoria.descripcion}}</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- | usuarioSearch: busquedau -->
+                <tr *ngFor="let presona of publico ">
+                    <th>{{presona.mes}}</th>
+                    <td>{{presona.total}}</td>
+                    <th>{{presona.hombre}}</th>
+                    <td>{{presona.total - presona.hombre}}</td>
+                    <th>{{presona.estudiante}}</th>
+                    <td>{{presona.total - presona.estudiante}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div *ngIf="campoSeleccionado == 'publico'">
+    <h1>Publico en General</h1>
+
+    <div style="overflow:auto;
+        height:400px;">
+        <table class="table table-hover">
+            <thead class="thead-default">
+                <tr>
+                    <th>Mes</th>
+                    <th>Total</th>
+                    <th>Hombres</th>
+                    <th>Mujeres</th>
+                    <th>Es estudiante</th>
+                    <th>No es estudiante</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- | usuarioSearch: busquedau -->
+                <tr *ngFor="let presona of publico ">
+                    <th>{{presona.mes}}</th>
+                    <td>{{presona.total}}</td>
+                    <th>{{presona.hombre}}</th>
+                    <td>{{presona.total - presona.hombre}}</td>
+                    <th>{{presona.estudiante}}</th>
+                    <td>{{presona.total - presona.estudiante}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <h1>Graficos</h1>
+
+    <div>
+        <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+        <button (click)="randomize()">Update</button>
+    </div>
+</div> -->

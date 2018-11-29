@@ -1,0 +1,30 @@
+.img_libro {
+    width: 85px;
+    height: 110px;
+    float: left;
+    background: #008348;
+}
+
+.img_libro2 {
+    width: 192px;
+    height: 250px;
+    float: left;
+    background: #008348;
+}
+
+.login-form {
+    width: 350px;
+    padding: 40px 30px;
+    background: rgb(209, 64, 64);
+    /* rgb(213, 115, 115); */
+    /* rgb(209, 64, 64); */
+    /*rgba(235, 235, 205, 0.726);*/
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    margin: 50px auto;
+}
+
+.fondo {
+    background: rgb(209, 64, 64);
+}

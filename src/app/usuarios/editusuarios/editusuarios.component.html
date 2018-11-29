@@ -1,0 +1,79 @@
+<h1>Componente de Usuarios</h1>
+<div class="alert alert-success" *ngIf="status == 'success'">Cambio exitoso</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">No se pudo hacer el cambio</div>
+<form #usuarioForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-5">
+    <div class="form-group">
+        <label for="">CURP</label>
+        <input type="text" class="form-control" placeholder="CURP" name="curp" #curp="ngModel" [(ngModel)]="usuario.curp" disabled>
+    </div>
+    <div class="form-group">
+        <label for="">Nombre(s)</label>
+        <input type="text" class="form-control" placeholder="Nombre(s)" name="nombres" #nombres="ngModel" [(ngModel)]="usuario.nombres">
+    </div>
+    <div class="form-group">
+        <label for="">Apellido Paterno</label>
+        <input type="text" class="form-control" placeholder="Apellido Paterno" name="app" #app="ngModel" [(ngModel)]="usuario.app">
+    </div>
+    <div class="form-group">
+        <label for="">Apellido Materno</label>
+        <input type="text" class="form-control" placeholder="Apellido Materno" name="apm" #apm="ngModel" [(ngModel)]="usuario.apm">
+    </div>
+    <div class="form-group">
+        <label for="">Calle</label>
+        <input type="text" class="form-control" placeholder="Calle" name="calle" #calle="ngModel" [(ngModel)]="usuario.calle">
+    </div>
+    <div class="form-group">
+        <label for="">Numero</label>
+        <input type="text" class="form-control" placeholder="Numero" name="numero" #numero="ngModel" [(ngModel)]="usuario.numero">
+    </div>
+    <div class="form-group">
+        <label for="">Colonia</label>
+        <input type="text" class="form-control" placeholder="Colonia" name="colonia" #colonia="ngModel" [(ngModel)]="usuario.colonia">
+    </div>
+    <div class="form-group">
+        <label for="">Código Postal</label>
+        <input type="text" class="form-control" placeholder="Código Postal" name="cp" #cp="ngModel" [(ngModel)]="usuario.cp">
+    </div>
+    <div class="form-group">
+        <label for="">Telefono</label>
+        <input type="text" class="form-control" placeholder="Telefono" name="telefono" #telefono="ngModel" [(ngModel)]="usuario.telefono">
+    </div>
+    <div class="form-group">
+        <label for="">Correo</label>
+        <input type="text" class="form-control" placeholder="Correo" name="correo" #correo="ngModel" [(ngModel)]="usuario.correo">
+    </div>
+    <div class="form-group">
+        <label for="">Foto de Credencial</label>
+        <input type="file" class="form-control" placeholder="Foto de Credencial" (change)="fileChangeEvent($event)">
+    </div>
+    <div class="form-group">
+        <label for="">Estudiante</label>
+        <select class="form-control" name="estudiante" id="estudiante" #estudiante="ngModel" [(ngModel)]="usuario.estudiante">
+            <option >Si</option>
+            <option >No</option>
+        </select>
+        <!-- <input type="text" class="form-control" placeholder="Estudiante" name="estudiante" #estudiante="ngModel" [(ngModel)]="usuario.estudiante"> -->
+    </div>
+    <div class="form-group" *ngIf="usuario.estudiante == 'Si'">
+        <label for="">Escuela</label>
+        <input type="text" class="form-control" placeholder="Escuela" name="escuela" #escuela="ngModel" [(ngModel)]="usuario.escuela">
+    </div>
+    <div class="form-group" *ngIf="usuario.estudiante == 'No'">
+        <label for="">Escuela</label>
+        <input type="text" class="form-control" placeholder="Escuela" name="escuela" #escuela="ngModel" [(ngModel)]="usuario.escuela" readonly>
+    </div>
+    <div class="form-group" *ngIf="usuario.estudiante == 'Si'">
+        <label for="">Grado</label>
+        <input type="text" class="form-control" placeholder="Grado" name="grado" #grado="ngModel" [(ngModel)]="usuario.grado">
+    </div>
+    <div class="form-group" *ngIf="usuario.estudiante == 'No'">
+        <label for="">Grado</label>
+        <input type="text" class="form-control" placeholder="Grado" name="grado" #grado="ngModel" [(ngModel)]="usuario.grado" readonly>
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="usuario.curp && usuario.nombres && usuario.app && usuario.apm && usuario.calle && usuario.numero && usuario.colonia && usuario.cp
+    && usuario.telefono && usuario.correo;
+    else desactivado"><i class="fas fa-pencil-alt"></i> Editar</button>
+    <ng-template #desactivado>
+        <button type="submit" class="btn btn-primary" disabled><i class="fas fa-pencil-alt"></i> Editar</button>
+    </ng-template>
+</form>

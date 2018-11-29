@@ -1,0 +1,42 @@
+<div class="" *ngIf="usuario">
+    <div id="usuario-head-card">
+        <!-- <img src="{{url + " alt=""> -->
+    </div>
+    <div>
+        <h1>{{usuario.nombres}} {{usuario.app}} {{usuario.apm}}</h1>
+        <h1>{{usuario.correo}}</h1>
+        <h1>{{usuario.curp}}</h1>
+    </div>
+    <br>
+    <h2 class="align-content: center;">Historial</h2>
+    <div>
+        <table class="table table-hover">
+            <thead class="thead-default">
+                <tr>
+                    <th>Portada</th>
+                    <th>Descripcion</th>
+                    <th>Autor</th>
+                    <th>Edicion</th>
+                    <th>Fecha de prestamo</th>
+                    <th>Fecha de entrega</th>
+                    <th>Entrega con Daño</th>
+                    <th>Entrega a Tiempo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prestamo of prestamos">
+                    <td>
+                        <div class="img_libro"> <img class="img_libro" src="{{url + 'getimagen/' + prestamo.libro.imagen}}" alt=""> </div>
+                    </td>
+                    <td>{{prestamo.libro.descripcion}}</td>
+                    <td>{{prestamo.libro.autor}}</td>
+                    <td>{{prestamo.libro.edicion}}</td>
+                    <td>{{prestamo.fecha | convertir}}</td>
+                    <td>{{prestamo.fecha_entrega_R | convertir}}</td>
+                    <td>{{prestamo.entrega_danio}}</td>
+                    <td>{{prestamo.entrega_tiempo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

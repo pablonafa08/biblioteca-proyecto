@@ -1,0 +1,106 @@
+<div class="alert alert-success" *ngIf="status == 'success'">Registro exitoso</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">No se pudo registrar</div>
+<div class="row">
+    <div class="col-lg-2" *ngIf="leido == false">Buscar por Usuario:</div>
+    <div class="col-lg-3" *ngIf="leido == false">
+        <input type="text" class="form-control" [(ngModel)]="busquedau">
+    </div>
+    <!-- <div class="col-lg-2" *ngIf="leido == false">Buscar Libro:</div>
+    <div class="col-lg-3" *ngIf="leido == false">
+        <input type="text" class="form-control" [(ngModel)]="busqueda">
+    </div> -->
+
+</div>
+<br>
+<div style="overflow:auto;
+height:400px;" *ngIf="leido == false">
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Libro</th>
+                <th>Usuario</th>
+                <th>Bibliotecario</th>
+                <th>Fecha de entrega acordada</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- | usuarioSearch: busquedau -->
+            <tr *ngFor="let prestamo of prestamos  | usuarioPSearch: busquedau">
+                <td>{{prestamo.libro.descripcion}}</td>
+                <td>{{prestamo.usuario.nombres}} {{prestamo.usuario.app}} {{prestamo.usuario.apm}}</td>
+                <td>{{prestamo.bibliotecario.nombres}} {{prestamo.bibliotecario.app}} {{prestamo.bibliotecario.apm}}</td>
+                <td>{{prestamo.fecha_entrega_A | convertir}}</td>
+                <td>
+                    <button class="btn btn-sm btn-success" (click)="marcar(prestamo._id, prestamo.libro.precio);"><i class="fas fa-check"></i> Seleccionar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row" *ngIf="leido == true">
+    <div class="col-lg-5">
+        <button *ngIf="status != 'success'" class="btn  btn-danger" (click)="desmarcar()">Cambiar</button>
+        <br><br>
+        <div class="form-group">
+            <label for="">Libro</label>
+            <input type="text" class="form-control" name="libro" #libro="ngModel" [(ngModel)]="prestamo.libro.descripcion" disabled>
+        </div>
+        <div class="form-group">
+            <label for="">Usuario</label>
+            <input type="text" class="form-control" name="usuario" #usuario="ngModel" [(ngModel)]="prestamo.usuario.nombres" disabled>
+        </div>
+        <div class="form-group">
+            <label for="">Comentarios sobre prestamo</label>
+            <textarea type="text" class="form-control" name="comentarios" #comentarios="ngModel" [(ngModel)]="prestamo.comentarios_prestamo" disabled></textarea>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="form-group" *ngIf="retraso == 'No'">
+            <label for="">Dias de Retraso</label>
+            <input type="text" class="form-control" name="retraso_d" #retraso_d="ngModel" [(ngModel)]="dias" disabled>
+        </div>
+        <div class="form-group" *ngIf="retraso == 'No'">
+            <label for="">Multa por Retraso</label>
+            <input type="text" class="form-control" name="retraso_c" #retraso_c="ngModel" [(ngModel)]="cobro_retraso" disabled>
+        </div>
+        <div class="form-group">
+            <label for="">Libro dañado</label>
+            <select class="form-control" name="danio" id="danio" #danio="ngModel" [(ngModel)]="prestamo.entrega_danio">
+              <option >Si</option>
+              <option >No</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="prestamo.entrega_danio == 'Si'">
+            <label for="">Comentarios sobre daño</label>
+            <textarea type="text" class="form-control" name="comentarios_d" #comentarios_d="ngModel" [(ngModel)]="comentariosD"></textarea>
+        </div>
+        <div class="form-group" *ngIf="prestamo.entrega_danio == 'Si'">
+            <label for="">Nivel de daño</label>
+            <select class="form-control" name="tam" id="tam">
+              <option *ngFor="let danio of danios" value="{{danio._id}}">{{danio.descripcion}}</option>
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-success" (click)="calcular()"> Calcular Total</button>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="">Total</label>
+            <input type="text" class="form-control" name="tota" #tota="ngModel" [(ngModel)]="total" disabled>
+        </div>
+        <div *ngIf="status != 'success'">
+            <button class="btn btn-primary" (click)="onSubmit()"><i class="fas fa-plus"></i> Agregar</button>
+        </div>
+        <div *ngIf="status == 'success'" class="row">
+            <div>
+                <button class="btn btn-primary" (click)="onSubmit()" disabled><i class="fas fa-plus"></i> Agregar</button>
+            </div>
+            <br>
+            <div class="col-lg-5">
+                <a routerLink="/devoluciones" class="btn btn-success" (click)="location.reload();"><i class="fas fa-pencil-alt"></i> Registrar otra Devolucion</a>
+            </div>
+        </div>
+    </div>
+
+</div>

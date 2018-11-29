@@ -1,0 +1,81 @@
+<div class="row" *ngIf="leido == false">
+    <div class="col-lg-2">Buscar Usuario:</div>
+    <div class="col-lg-3">
+        <input type="text" class="form-control" [(ngModel)]="busquedau">
+    </div>
+</div>
+<div class="alert alert-success" *ngIf="status == 'success'">Se actualizó la credencial</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">No se pudo actualizar la credencial</div>
+<br>
+<div style="overflow:auto;
+height:350px;" *ngIf="leido == false">
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Nombre</th>
+                <th>CURP</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios | usuarioSearch: busquedau">
+                <td>{{usuario.nombres}} {{usuario.app}} {{usuario.apm}}</td>
+                <td>{{usuario.curp}}</td>
+                <td>
+                    <button *ngIf="leido == false" class="btn btn-sm btn-success" (click)="marcar(usuario._id);"><i class="fas fa-check"></i> Seleccionar</button>
+                    <button *ngIf="leido == true" class="btn btn-sm btn-success" (click)="marcar(usuario._id);" disabled><i class="fas fa-check"></i> Seleccionar</button>
+                    <!-- <button *ngIf="leido == true" class="btn btn-sm btn-danger" (click)="desmarcar()">Desmarcar como leído</button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button *ngIf="leido == true && status != 'success'" class="btn btn-danger" (click)="desmarcar()">Seleccionar otro</button>
+<br><br>
+<!-- <form #precioForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-5"> -->
+<div *ngIf="leido == true" class="row">
+    <div class="col-lg-5">
+        <div class="form-group">
+            <label for="">Nombre</label>
+            <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="nombres" disabled>
+        </div>
+        <div class="form-group">
+            <label for="">Direccion</label>
+            <input type="text" class="form-control" name="direccion" #direccion="ngModel" [(ngModel)]="direccions" disabled>
+        </div>
+        <div class="form-group">
+            <label for="">Total:</label>
+            <input type="text" class="form-control" name="total" #total="ngModel" [(ngModel)]="totals" disabled>
+        </div>
+
+    </div>
+    <div class="col-lg-5">
+        <div *ngIf="estudiante == 'Si'">
+            <div class="form-group">
+                <label for="">Escuela</label>
+                <input type="text" class="form-control" name="escuela" #escuela="ngModel" [(ngModel)]="escuelas" disabled>
+            </div>
+            <div class="form-group">
+                <label for="">Grado</label>
+                <input type="text" class="form-control" name="grado" #grado="ngModel" [(ngModel)]="grados" disabled>
+            </div>
+
+        </div>
+        <div class="img_libro">
+            <img class="img_libro" src="{{url + 'getimagen/' + usuario.imagen}}" alt="">
+        </div>
+    </div>
+
+</div>
+<div *ngIf="leido == true && status != 'success'">
+    <button class="btn btn-primary" (click)="onSubmit()"><i class="fas fa-pencil-alt"></i> Actualizar</button>
+</div>
+<div class="row">
+    <div *ngIf="status == 'success'" class="col-lg-5">
+        <button class="btn btn-primary" (click)="onSubmit()" disabled><i class="fas fa-pencil-alt"></i> Actualizar</button>
+    </div>
+    <div *ngIf="status == 'success'" class="col-lg-5">
+        <a routerLink="/renovarcredencial" class="btn btn-success" (click)="location.reload();"><i class="fas fa-pencil-alt"></i> Renovar otra Credencial</a>
+    </div>
+</div>
+<!-- </form> -->
